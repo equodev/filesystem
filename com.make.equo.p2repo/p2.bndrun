@@ -11,6 +11,9 @@
     osgi.identity;filter:='(osgi.identity=org.eclipse.equinox.ds)',\
     osgi.identity;filter:='(osgi.identity=org.eclipse.equinox.p2.publisher.eclipse)'
 
+-runproperties.core: \
+    osgi.compatibility.bootdelegation=true
+
 -runproperties: \
     eclipse.consoleLog=true,\
     launch.keep=false,\

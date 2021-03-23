@@ -1,11 +1,36 @@
 Bundle-ActivationPolicy: lazy
 
+-include: ${workspace}/gradle.properties
+-buildpath.graphics: ${if;${matches;${tolower;${os.name}};.*win.*};org.eclipse.swt.win32.win32.x86_64;${if;${matches;${tolower;${os.name}};.*mac.*};org.eclipse.swt.cocoa.macosx.x86_64;org.eclipse.swt.gtk.linux.x86_64}}
+
 -plugin.1.Equo: \
     aQute.bnd.repository.p2.provider.P2Repository; \
         name = Equo; \
         url = "https://dl.maketechnology.io/framework/0.2.0/repo/"; \
         poll.time = -1; \
         cache = ~/.bnd/cache/equo
+
+-plugin.2.Eclipse201912: \
+    aQute.bnd.repository.osgi.OSGiRepository; \
+        name = "Eclipse201912"; \
+        expand-bcp = true; \
+        locations = "https://p2repo-osgi-index.fra1.digitaloceanspaces.com/2019-12/index.xml.gz"; \
+        poll.time = -1; \
+        cache = ~/.bnd/cache/eclipse201912
+
+-plugin.3.P2Plugins: \
+    aQute.bnd.repository.osgi.OSGiRepository; \
+        name = "P2Plugins"; \
+        locations = "http://www.maketechnology.io/p2plugins/index.xml.gz"; \
+        poll.time = -1; \
+        cache = ~/.bnd/cache/p2plugins
+
+-plugin.4.Testing: \
+    aQute.bnd.repository.p2.provider.P2Repository; \
+        name = "Equo Testing"; \
+        url = "https://testing-core.ams3.digitaloceanspaces.com/0.2.0/repo/"; \
+        poll.time = -1; \
+        cache = ~/.bnd/cache/equo-testing
 
 -plugin.5.Release: \
     aQute.bnd.deployer.repository.LocalIndexedRepo; \

@@ -118,6 +118,7 @@ release:
   script:
     - gradle --no-daemon release
     - gradle $gradle_opt run.p2
+    - cp p2.index cnf/release && xz -e cnf/release/artifacts.xml && xz -e cnf/release/content.xml
     - gradle $gradle_opt publish
     - gradle com.make.equo.node.packages:yarnPublish --rerun-tasks
   only:

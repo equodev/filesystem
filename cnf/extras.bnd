@@ -1,0 +1,4 @@
+-runbundles.equoextras: \
+	com.make.equo.filesystem.api,\
+	com.make.equo.filesystem.provider,\
+	org.apache.commons.io

@@ -6,7 +6,7 @@ Bundle-ActivationPolicy: lazy
 -plugin.1.Equo: \
     aQute.bnd.repository.p2.provider.P2Repository; \
         name = Equo; \
-        url = "https://dl.maketechnology.io/framework/0.2.0/repo/"; \
+        url = "https://equo-framework.ams3.digitaloceanspaces.com/0.2.0/repo/"; \
         poll.time = -1; \
         cache = ~/.bnd/cache/equo
 
@@ -19,9 +19,9 @@ Bundle-ActivationPolicy: lazy
         cache = ~/.bnd/cache/eclipse201912
 
 -plugin.3.P2Plugins: \
-    aQute.bnd.repository.osgi.OSGiRepository; \
+    aQute.bnd.repository.p2.provider.P2Repository; \
         name = "P2Plugins"; \
-        locations = "http://www.maketechnology.io/p2plugins/index.xml.gz"; \
+        url = "https://p2plugins.fra1.digitaloceanspaces.com/repository/"; \
         poll.time = -1; \
         cache = ~/.bnd/cache/p2plugins
 

@@ -38,5 +38,12 @@ Bundle-ActivationPolicy: lazy
         local = ${build}/release; \
         type = R5
 
+-plugin.8.BuildRepo: \
+    aQute.bnd.deployer.repository.LocalIndexedRepo; \
+        name = BuildRepo; \
+        local = ${build}/buildrepo; \
+        type = R5
+
+-buildrepo: BuildRepo
 -releaserepo: Release
 -baselinerepo: Release

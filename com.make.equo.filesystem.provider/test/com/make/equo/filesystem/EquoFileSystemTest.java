@@ -15,6 +15,11 @@ import com.make.equo.filesystem.api.FileInfo;
 import com.make.equo.filesystem.api.IEquoFileSystem;
 import com.make.equo.filesystem.provider.EquoFileSystemImpl;
 
+/**
+ * 
+ * @hidden
+ *
+ */
 public class EquoFileSystemTest {
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();

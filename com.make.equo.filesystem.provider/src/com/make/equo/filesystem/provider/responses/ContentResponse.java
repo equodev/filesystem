@@ -8,27 +8,27 @@ package com.make.equo.filesystem.provider.responses;
 public class ContentResponse {
 	private String content;
 	/**
-	 * Create empty ContentResponse instance.
+	 * Creates empty ContentResponse instance.
 	 */
 	public ContentResponse() {
 	}
 	/**
-	 * 
-	 * @param content Create ContentResponse instance with content.
+	 * Creates ContentResponse instance with content.
+	 * @param content the content from response.
 	 */
 	public ContentResponse(String content) {
 		this.content = content;
 	}
 	/**
-	 * 
-	 * @return content from response.
+	 * Gets the content from a response.
+	 * @return the content from response.
 	 */
 	public String getContent() {
 		return content;
 	}
 	/**
-	 * 
-	 * @param content Set content from response.
+	 * Sets the content from a response.
+	 * @param content the content from response.
 	 */
 	public void setContent(String content) {
 		this.content = content;

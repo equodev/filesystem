@@ -8,15 +8,15 @@ package com.make.equo.filesystem.provider.responses;
 public class OkResponse {
 	private String ok = "ok";
 	/**
-	 * 
-	 * @return ok message from response.
+	 * Gets the ok message from response.
+	 * @return the ok message from response.
 	 */
 	public String getOk() {
 		return ok;
 	}
 	/**
-	 * 
-	 * @param ok Set ok message from response.
+	 * Sets the ok message from response.
+	 * @param ok the ok message from response.
 	 */
 	public void setOk(String ok) {
 		this.ok = ok;

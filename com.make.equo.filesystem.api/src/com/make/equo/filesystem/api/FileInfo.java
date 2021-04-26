@@ -14,16 +14,16 @@ public class FileInfo {
 	private Collection<FileInfo> children;
 
 	/**
-	 * Create FileInfo instance.
+	 * Creates the FileInfo instance.
 	 * 
-	 * @param exists If folder exists.
-	 * @param path Path to folder.
-	 * @param name File name.
-	 * @param canRead Permission to read.
-	 * @param canWrite Permission to write.
-	 * @param canExecute
-	 * @param isDirectory 
-	 * @param children
+	 * @param exists if folder exists.
+	 * @param path the path to folder.
+	 * @param name the file name.
+	 * @param canRead permission to read.
+	 * @param canWrite permission to write.
+	 * @param canExecute whether it can be executed.
+	 * @param isDirectory whether this resource is a directory or not.
+	 * @param children the children of this resource.
 	 */
 	public FileInfo(boolean exists, String path, String name, boolean canRead, boolean canWrite, boolean canExecute,
 			boolean isDirectory, Collection<FileInfo> children) {
@@ -41,59 +41,59 @@ public class FileInfo {
 		}
 	}
 	/**
-	 * 
-	 * @return If folder exists.
+	 * Returns whether the folder exists or not.
+	 * @return whether the folder exists or not.
 	 */
 	public boolean exists() {
 		return exists;
 	}
 	/**
-	 * 
-	 * @return Path to file.
+	 * Gets the folder path.
+	 * @return the folder path.
 	 */
 	public String getPath() {
 		return path;
 	}
 	/**
-	 * 
-	 * @return File name.
+	 * Gets the file name.
+	 * @return the file name.
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * 
-	 * @return If it have read permission.
+	 * Returns whether the folder has read permission.
+	 * @return whether the folder has read permission.
 	 */
 	public boolean canRead() {
 		return canRead;
 	}
 	/**
-	 * 
-	 * @return If it have write permission.
+	 * Returns whether the folder has write permission.
+	 * @return whether the folder has write permission.
 	 */
 	public boolean canWrite() {
 		return canWrite;
 	}
 	/**
-	 * 
-	 * @return If it can executed.
+	 * Returns whether it can be executed or not.
+	 * @return whether it can be executed or not.
 	 */
 	public boolean canExecute() {
 		return canExecute;
 	}
 	/**
-	 * 
-	 * @return If it is a directory.
+	 * Returns whether it can be executed.
+	 * @return whether it can be executed.
 	 */
 	public boolean isDirectory() {
 		return isDirectory;
 	}
 
 	/**
-	 * 
-	 * @return A non-recursive collection of childrens. To know the childrens of
-	 *         your childrens, you will have to obtain a new FileInfo for them
+	 * Gets a non-recursive collection of childrens. To know the childrens of
+	 *         your childrens, it will have to obtain a new FileInfo for them.
+	 * @return A non-recursive collection of childrens.
 	 */
 	public Collection<FileInfo> getChildren() {
 		return children;

@@ -10,71 +10,82 @@ import java.io.File;
 public interface IEquoFileSystem {
 
 	/**
-	 * @return The file selected. Null if it's canceled
+	 * Opens the selected file.
+	 * @return the selected file. Null if it's canceled.
 	 */
 	public File openFile();
 
 	/**
-	 * @return The folder selected. Null if it's canceled
+	 * Opens the selected folder.
+	 * @return the selected folder. Null if it's canceled.
 	 */
 	public File openFolder();
 
 	/**
+	 * Gets the information from file.
 	 * @param file
-	 * @return Information from file.
+	 * @return the information from file.
 	 */
 	public FileInfo fileInfo(File file);
 
 	/**
-	 * @param folder Folder to creates the directory.
-	 * @return If folder was created.
+	 * Creates a new folder.
+	 * @param folder the folder to creates the directory.
+	 * @return if the folder was created.
 	 */
 	public boolean newFolder(File folder);
 
 	/**
-	 * @param file File to save.
-	 * @param content Content to save.
-	 * @return If file was saved.
+	 * Saves the file.
+	 * @param file the file to save.
+	 * @param content the content to save.
+	 * @return if the file was saved.
 	 */
 	public boolean saveFile(File file, String content);
 
 	/**
-	 * @param content File content.
-	 * @return The file that was selected and saved. Null if it's canceled or there
+	 * Saves the file with custom folder path.
+	 * @param content the file content.
+	 * @return the file that was selected and saved. Null if it's canceled or there
 	 *         was an error.
 	 */
 	public File saveFileAs(String content);
 
 	/**
-	 * @param file File to read.
-	 * @return The content of the file. Null if there was an error.
+	 * Reads the file.
+	 * @param file the file to read.
+	 * @return the content of the file. Null if there was an error.
 	 */
 	public String readFile(File file);
 
 	/**
-	 * @param file File to rename
-	 * @param newName New name for file.
-	 * @return The absolute path of the renamed file. Null if there was an error.
+	 * Renames the file.
+	 * @param file the file to rename.
+	 * @param newName the new name for file.
+	 * @return the absolute path of the renamed file. Null if there was an error.
 	 */
 	public String renameFile(File file, String newName);
 
 	/**
-	 * @param file File to delete.
-	 * @return If file was deleted.
+	 * Deletes the file.
+	 * @param file the file to delete.
+	 * @return if file was deleted.
 	 */
 	public boolean deleteFile(File file);
 
 	/**
-	 * @param file File to move.
-	 * @param folderDest Destination folder.
-	 * @return The absolute path of the moved file. Null if there was an error.
+	 * Moves the file to new destination.
+	 * @param file the file to move.
+	 * @param folderDest the destination folder.
+	 * @return the absolute path of the moved file. Null if there was an error.
 	 */
 	public String moveFile(File file, File folderDest);
 
 	/**
-	 * @param file File to copy.
-	 * @param folderDest Destination folder.
-	 * @return The absolute path of the copied file. Null if there was an error.
+	 * Copies the file to new destination.
+	 * @param file the file to copy.
+	 * @param folderDest the destination folder.
+	 * @return the absolute path of the copied file. Null if there was an error.
 	 */
 	public String copyFile(File file, File folderDest);
 }

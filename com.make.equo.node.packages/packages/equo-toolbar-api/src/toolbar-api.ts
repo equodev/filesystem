@@ -44,7 +44,7 @@ export class ToolbarBuilder {
     this.equoToolbar = new EquoToolbar();
   }
   /**
-   * Change the toolbar's background color using rgb or hexacode.
+   * Changes the toolbar's background color using rgb or hexacode.
    * @param {string} color 
    * @returns {ToolbarBuilder}
    */
@@ -53,14 +53,14 @@ export class ToolbarBuilder {
     return this;
   }
   /**
-   * Add a new item to the toolbar.
+   * Adds a new item to the toolbar.
    * @returns {ToolItemBuilder}
    */
   public addToolItem(): ToolItemBuilder {
     return this.linker.createNewToolItemBuilder(this.equoToolbar);
   }
   /**
-   * Add to the HTML body with all the customization previously added.
+   * Builds the HTML body with all the customization previously added.
    * @returns {void}
    */
   public build(): void {
@@ -121,14 +121,14 @@ export class ToolItemBuilder {
     this.toolbar.addToolItem(this.toolItem);
   }
   /**
-   * Add a new item to the toolbar.
+   * Adds a new item to the toolbar.
    * @returns {ToolItemBuilder}
    */
   public addToolItem(): ToolItemBuilder {
     return this.linker.createNewToolItemBuilder(this.toolbar);
   }
   /**
-   * Add functionality when the item is clicked.
+   * Adds the functionality when the item is clicked.
    * @param {Function} eventHandler 
    * @returns {ToolItemBuilder}
    */
@@ -137,7 +137,7 @@ export class ToolItemBuilder {
     return this;
   }
   /**
-   * Add an specific icon on the new toolItem. The available icons to this toolbar belong to the fontawesome library. Here, in Fontawesome Icons website, we can choose the desired icon just adding the icon name as method's parameter.
+   * Adds an specific icon on the new toolItem. The available icons to this toolbar belong to the fontawesome library. Here, in Fontawesome Icons website, we can choose the desired icon just adding the icon name as method's parameter.
    * @param {string} icon 
    * @returns {ToolItemBuilder}
    */
@@ -146,7 +146,7 @@ export class ToolItemBuilder {
     return this;
   }
   /**
-   * It defines a toolitem's description.
+   * Defines a toolitem's description.
    * @param {string} tooltip 
    * @returns {ToolItemBuilder}
    */
@@ -155,7 +155,7 @@ export class ToolItemBuilder {
     return this;
   }
   /**
-   * Add to the HTML body with all the customization previously added.
+   * Builds the HTML body with all the customization previously added.
    * @returns {void}
    */
   public build(): void {

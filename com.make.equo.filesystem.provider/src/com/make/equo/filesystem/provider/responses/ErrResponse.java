@@ -8,15 +8,15 @@ package com.make.equo.filesystem.provider.responses;
 public class ErrResponse {
 	private int err = 1;
 	/**
-	 * 
-	 * @return Error from response.
+	 * Gets the error from response.
+	 * @return the error from response.
 	 */
 	public int getErr() {
 		return err;
 	}
 	/**
-	 * 
-	 * @param err Set error from response.
+	 * Sets the error from response.
+	 * @param err the error from response.
 	 */
 	public void setErr(int err) {
 		this.err = err;

@@ -35,20 +35,34 @@ export class ToolbarBuilder {
   private linker: Linker;
   private equoToolbar: EquoToolbar;
 
+  /**
+   * @name ToolbarBuilder
+   * @class
+   */
   constructor(linker: Linker) {
     this.linker = linker;
     this.equoToolbar = new EquoToolbar();
   }
-
+  /**
+   * Changes the toolbar's background color using rgb or hexacode.
+   * @param {string} color 
+   * @returns {ToolbarBuilder}
+   */
   public withBackgroundColor(color: string) {
     this.equoToolbar.setColour(color);
     return this;
   }
-
+  /**
+   * Adds a new item to the toolbar.
+   * @returns {ToolItemBuilder}
+   */
   public addToolItem(): ToolItemBuilder {
     return this.linker.createNewToolItemBuilder(this.equoToolbar);
   }
-
+  /**
+   * Builds the HTML body with all the customization previously added.
+   * @returns {void}
+   */
   public build(): void {
     let toolbar = document.createElement('equotoolbarwc-toolbar');
 
@@ -95,33 +109,55 @@ export class ToolItemBuilder {
   private linker: Linker;
   private toolItem: EquoToolItem
   private toolbar: EquoToolbar
-
+  /**
+   * 
+   * @class
+   * @name ToolItemBuilder
+   */
   constructor(linker: Linker, toolbar: EquoToolbar) {
     this.linker = linker;
     this.toolItem = new EquoToolItem();
     this.toolbar = toolbar;
     this.toolbar.addToolItem(this.toolItem);
   }
-
+  /**
+   * Adds a new item to the toolbar.
+   * @returns {ToolItemBuilder}
+   */
   public addToolItem(): ToolItemBuilder {
     return this.linker.createNewToolItemBuilder(this.toolbar);
   }
-
+  /**
+   * Adds the functionality when the item is clicked.
+   * @param {Function} eventHandler 
+   * @returns {ToolItemBuilder}
+   */
   public onClick(eventHandler: Function): ToolItemBuilder {
     this.toolItem.setEventHandler(eventHandler);
     return this;
   }
-
+  /**
+   * Adds an specific icon on the new toolItem. The available icons to this toolbar belong to the fontawesome library. Here, in Fontawesome Icons website, we can choose the desired icon just adding the icon name as method's parameter.
+   * @param {string} icon 
+   * @returns {ToolItemBuilder}
+   */
   public addIcon(icon: string): ToolItemBuilder {
     this.toolItem.setIcon(icon);
     return this;
   }
-
+  /**
+   * Defines a toolitem's description.
+   * @param {string} tooltip 
+   * @returns {ToolItemBuilder}
+   */
   public addTooltip(tooltip: string): ToolItemBuilder {
     this.toolItem.setTooltip(tooltip);
     return this;
   }
-
+  /**
+   * Builds the HTML body with all the customization previously added.
+   * @returns {void}
+   */
   public build(): void {
     this.linker.getToolbarBuilder().build();
   }
@@ -193,8 +229,17 @@ export class EquoToolItem {
   }
 
 }
-
+/**
+ * @namespace
+ * @description Customize the Equo Toolbar using Toolbar var.
+ */
 export namespace Toolbar {
+  /**
+   * Initialize toolbar.
+   * @function
+   * @name create
+   * @returns {ToolbarBuilder}
+   */
   export function create(): ToolbarBuilder {
     return new Linker().getToolbarBuilder();
   }

@@ -1,6 +1,6 @@
 {
     "name": "@equo/toolbar-api",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Toolbar Component Api for Equo apps",
     "license": "UNLICENSED",
     "publishConfig": {
@@ -9,15 +9,19 @@
     "dependencies":{
         "@equo/equo-toolbar-wc":"0.1.0"
     },
+    "devDependencies": {
+        "jsdoc-to-markdown": "^6.0.0"
+    },
     "main": "./lib/index.js",
     "typings": "./lib/index",
     "files": [
         "/lib"
     ],
     "scripts": {
-        "prepare": "yarn run clean && yarn run build",
+        "prepare": "yarn run clean && yarn run build && yarn run jsdoc2md",
         "clean": "rimraf lib",
         "build": "yarn run compile",
-        "compile": "tsc"
+        "compile": "tsc",
+        "jsdoc2md": "jsdoc2md lib/**/*.js > equo-toobar-api-doc.md"
     }
 }

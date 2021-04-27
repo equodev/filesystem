@@ -9,11 +9,25 @@ import com.make.equo.ws.api.IEquoEventHandler;
 
 public abstract class FileSystemHandler {
 	protected IEquoFileSystem equoFileSystem;
-
+	/**
+	 * Executes the action corresponding to the command.
+	 * 
+	 * @param payload
+	 * @return the output of the command execution.
+	 */
 	protected abstract Object execute(JsonObject payload);
-
+	/**
+	 * Gets the command name.
+	 * @return the command name.
+	 */
 	protected abstract String getCommandName();
 
+	/**
+	 * Registers in the handler the command along with its executable action.
+	 * 
+	 * @param equoFileSystem The IEquoFileSystem instance implementation.
+	 * @param eventHandler The IEquoEventHandler instance implementation.
+	 */
 	public void register(IEquoFileSystem equoFileSystem, IEquoEventHandler eventHandler) {
 		this.equoFileSystem = equoFileSystem;
 		eventHandler.on(getCommandName(), (JsonObject payload) -> {

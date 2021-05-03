@@ -1,5 +1,9 @@
 equo {
-    channel = version
+    if (System.getProperty('deployingProd', '').equals("true")) {
+        channel = version
+    } else {
+        channel = "develop"
+    }
 }
 
 task uploadExtras(type: com.make.equo.UploadFileTask) {

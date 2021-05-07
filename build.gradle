@@ -6,15 +6,15 @@ equo {
     }
 }
 
-task uploadExtras(type: com.make.equo.UploadFileTask) {
+task uploadExtras(type: com.equo.UploadFileTask) {
     key "${equo.channel}/extras.bnd"
     file file('cnf/extras.bnd')
 }
 
-task uploadMetadata(type: com.make.equo.UploadMetadataTask) {
+task uploadMetadata(type: com.equo.UploadMetadataTask) {
 }
 
-task publish(type: com.make.equo.UploadRepoTask, dependsOn: [uploadExtras]) {
+task publish(type: com.equo.UploadRepoTask, dependsOn: [uploadExtras]) {
 }
 
 allprojects {

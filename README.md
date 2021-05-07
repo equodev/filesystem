@@ -37,10 +37,10 @@ The bundles that provide the extras functionality of the framework:
 
 | Bundle | Description |
 | ----------- | ----------- |
-| com.make.equo.filesystem.api| API to manage the filesystem to Create/Open/Read/Write/Copy/Rename/Move/Delete folders or files |
-| com.make.equo.filesystem.provider | The implementation of the filesystem API. Has the logic of filesystem managment and contributes a js API to make filesystem calls from javascript | 
+| com.equo.filesystem.api| API to manage the filesystem to Create/Open/Read/Write/Copy/Rename/Move/Delete folders or files |
+| com.equo.filesystem.provider | The implementation of the filesystem API. Has the logic of filesystem managment and contributes a js API to make filesystem calls from javascript | 
 | com.make.node.packages | Contains extra Node packages components. It currently has packages for a web toolbar creation | 
 
 ### Release bundle
 
-As every other Framework project, there is the `com.make.equo.p2repo`, which is responsible of the p2 repository generation of the project and dependencies for its release.
+As every other Framework project, there is the `com.equo.p2repo`, which is responsible of the p2 repository generation of the project and dependencies for its release.

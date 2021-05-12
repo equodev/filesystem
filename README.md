@@ -12,17 +12,17 @@ To add Extras in an app you must do two things:
     -plugin.1.EquoExtras: \
         aQute.bnd.repository.p2.provider.P2Repository; \
             name = EquoExtras; \
-            url = "https://equo-framework-extras.ams3.digitaloceanspaces.com/1.0.0/repo/"; \
+            url = "https://dl.equoplatform.com/framework-extras/1.0.0/repo/"; \
             poll.time = -1
     ```
 
-* **Enable Extras in your app.** Open the `bnd.bnd` file of your app and add `https://equo-framework-extras.ams3.digitaloceanspaces.com/1.0.0/extras.bnd` into the _-include_ sentence.
+* **Enable Extras in your app.** Open the `bnd.bnd` file of your app and add `https://dl.equoplatform.com/framework-extras/1.0.0/extras.bnd` into the _-include_ sentence.
 
     The file will look like this:
 
     ```
-    -include: https://equo-framework.ams3.digitaloceanspaces.com/1.0.0/equoapp.bnd,\
-	          https://equo-framework-extras.ams3.digitaloceanspaces.com/1.0.0/extras.bnd
+    -include: https://dl.equoplatform.com/framework/1.0.0/equoapp.bnd,\
+	          https://dl.equoplatform.com/framework-extras/1.0.0/extras.bnd
     ```
 
 ## How to develop

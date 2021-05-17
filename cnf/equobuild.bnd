@@ -1,0 +1,5 @@
+-plugin.1.EquoExtras: \
+    aQute.bnd.repository.osgi.OSGiRepository; \
+        name = EquoExtras; \
+        locations = "https://dl.equoplatform.com/framework-extras/VERSIONPLACEHOLDER/repo/index.xml.gz"; \
+        poll.time = -1

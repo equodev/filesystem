@@ -1,0 +1,5 @@
+Bundle-Version: 1.0.0.${tstamp}
+Export-Package: com.equo.filesystem.api
+-buildpath: \
+    com.google.gson,\
+    osgi.cmpn

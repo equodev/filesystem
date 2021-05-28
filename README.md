@@ -27,7 +27,7 @@ To add Extras in an app you must do two things:
 
 ## How to develop
 
-The process of developing is the same as any other part of Equo framework. Refer to [Framework guide of development](https://gitlab.com/maketechnology/equo/framework#developing-the-equo-framework)
+The process of developing is the same as any other part of Equo framework. Refer to [Framework guide for contributions](https://github.com/equoplatform/framework#contributing)
 
 ## Bundles involved
 

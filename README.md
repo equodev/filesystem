@@ -6,14 +6,11 @@ Equo Extras contains a set of optional APIs with extra functionalities
 
 To add Extras in an app you must do two things:
 
-* **Add the repository.** Open `cnf/build.bnd` file in your app project and add the following code:
+* **Add repositories and build settings.** Open `cnf/build.bnd` file in your app project and add `https://dl.equoplatform.com/framework-extras/1.0.0/equobuild.bnd` into the includes. It will look like this:
 
     ```
-    -plugin.1.EquoExtras: \
-        aQute.bnd.repository.p2.provider.P2Repository; \
-            name = EquoExtras; \
-            url = "https://dl.equoplatform.com/framework-extras/1.0.0/repo/"; \
-            poll.time = -1
+    -include: https://dl.equoplatform.com/framework/1.0.0/equobuild.bnd,\
+                https://dl.equoplatform.com/framework-extras/1.0.0/equobuild.bnd
     ```
 
 * **Enable Extras in your app.** Open the `bnd.bnd` file of your app and add `https://dl.equoplatform.com/framework-extras/1.0.0/extras.bnd` into the _-include_ sentence.

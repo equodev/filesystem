@@ -5,7 +5,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import com.equo.contribution.api.EquoContributionBuilder;
-import com.equo.contribution.api.resolvers.EquoGenericURLResolver;
+import com.equo.contribution.api.resolvers.EquoGenericUrlResolver;
 import com.equo.filesystem.api.IEquoFileSystem;
 import com.equo.filesystem.provider.handlers.*;
 import com.equo.ws.api.IEquoEventHandler;
@@ -28,7 +28,7 @@ public class EquoFileSystemContribution {
 		registerHandlers();
 
 		builder.withContributionName(FILE_SYSTEM_CONTRIBUTION_NAME).withScriptFile(COMMANDS_JS_API)
-				.withURLResolver(new EquoGenericURLResolver(EquoFileSystemContribution.class.getClassLoader())).build();
+				.withUrlResolver(new EquoGenericUrlResolver(EquoFileSystemContribution.class.getClassLoader())).build();
 	}
 
 	private void registerHandlers() {

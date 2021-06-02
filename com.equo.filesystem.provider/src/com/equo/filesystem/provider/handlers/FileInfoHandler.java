@@ -4,14 +4,17 @@ import java.io.File;
 
 import com.google.gson.JsonObject;
 
+/**
+ * Handler responsible to get file details.
+ */
 public class FileInfoHandler extends FileSystemHandler {
-	@Override
-	protected Object execute(JsonObject payload) {
-		return equoFileSystem.fileInfo(new File(getPathParam(payload)));
-	}
+  @Override
+  protected Object execute(JsonObject payload) {
+    return equoFileSystem.fileInfo(new File(getPathParam(payload)));
+  }
 
-	@Override
-	protected String getCommandName() {
-		return "_FileInfo";
-	}
+  @Override
+  protected String getCommandName() {
+    return "_FileInfo";
+  }
 }

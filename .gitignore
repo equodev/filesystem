@@ -22,3 +22,8 @@ cnf/*/
 *.prefs
 .npmrc
 equo-*-doc.md
+.gradle/
+lib/
+node_modules/
+dist/
+yarn-error.log

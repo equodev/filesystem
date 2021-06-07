@@ -2,3 +2,4 @@ org.jacoco:org.jacoco.agent:jar:runtime:0.8.6
 org.apache.servicemix.bundles:org.apache.servicemix.bundles.junit:4.12_1
 org.mockito:mockito-all:1.10.19
 org.hamcrest:hamcrest:2.2
+org.osgi:osgi.cmpn:6.0.0

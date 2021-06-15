@@ -1,6 +1,6 @@
 Bundle-ActivationPolicy: lazy
 
--include: https://dl.equoplatform.com/framework/develop/framework.bnd
+-include: https://dl.equoplatform.com/framework/1.0.0/framework.bnd
 
 -plugin.1.Equo: \
     aQute.bnd.repository.osgi.OSGiRepository; \

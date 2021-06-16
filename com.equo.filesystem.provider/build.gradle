@@ -1,10 +1,5 @@
 apply plugin: "com.moowork.node"
 
-task yarnPublish(type: YarnTask) {
-  dependsOn yarn_install
-  args = ['run', 'publishFromPackage', System.getProperty('registryUrl', '')]
-}
-
 yarn_install {
   doFirst {
     mkdir 'node_modules'

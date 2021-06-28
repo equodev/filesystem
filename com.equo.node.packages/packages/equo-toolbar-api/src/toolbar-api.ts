@@ -22,6 +22,7 @@
 
 //require ('./../../equo-toolbar-wc/dist/equotoolbarwc.min.js');
 import '@equo/equo-toolbar-wc';
+import { EquoWebSocketService, EquoWebSocket } from '@equo/websocket'
 
 export class Linker {
 
@@ -56,6 +57,7 @@ export class Linker {
 export class ToolbarBuilder {
   private linker: Linker;
   private equoToolbar: EquoToolbar;
+  private toolbar: HTMLElement= document.createElement('equotoolbarwc-toolbar');
 
   /**
    * @name ToolbarBuilder
@@ -70,7 +72,7 @@ export class ToolbarBuilder {
    * @param {string} color 
    * @returns {ToolbarBuilder}
    */
-  public withBackgroundColor(color: string) {
+  public withBackgroundColor(color: string): ToolbarBuilder {
     this.equoToolbar.setColour(color);
     return this;
   }
@@ -86,20 +88,18 @@ export class ToolbarBuilder {
    * @returns {void}
    */
   public build(): void {
-    let toolbar = document.createElement('equotoolbarwc-toolbar');
-
     let toolbarColor = this.equoToolbar.getColour();
     if (typeof toolbarColor !== undefined) {
-      toolbar.setAttribute('color', toolbarColor);
+      this.toolbar.setAttribute('color', toolbarColor);
     }
 
     var toolitems: Array<EquoToolItem> = this.equoToolbar.getToolItems();
 
     for (let i = 0; i < toolitems.length; i++) {
-      this.defineToolItem(toolitems, i, toolbar);
+      this.defineToolItem(toolitems, i, this.toolbar);
     }
 
-    document.body.insertBefore(toolbar,document.body.firstChild);
+    document.body.insertBefore(this.toolbar,document.body.firstChild);
   }
 
 
@@ -131,6 +131,7 @@ export class ToolItemBuilder {
   private linker: Linker;
   private toolItem: EquoToolItem
   private toolbar: EquoToolbar
+  private webSocket= EquoWebSocketService.get();
   /**
    * 
    * @class
@@ -150,17 +151,37 @@ export class ToolItemBuilder {
     return this.linker.createNewToolItemBuilder(this.toolbar);
   }
   /**
+   * @callback eventHandlerCallback
+   * @param {EquoWebSocket} [ws] - Optional. EquoWebSocket instance.
+   */
+  /**
    * Adds the functionality when the item is clicked.
-   * @param {Function} eventHandler 
+   * @param {eventHandlerCallback} eventHandler
    * @returns {ToolItemBuilder}
    */
-  public onClick(eventHandler: Function): ToolItemBuilder {
+  public onClick(eventHandler: (ws?: EquoWebSocket) => void): ToolItemBuilder {
     this.toolItem.setEventHandler(eventHandler);
     return this;
   }
   /**
+   * Sets the shortcut for toolItem.
+   * @param {string} shortcut
+   * @returns {ToolItemBuilder}
+   */
+  public setShortcut(shortcut: string): ToolItemBuilder {
+    var shortcutEvent = "_toolbarShortcut".concat(shortcut);
+    this.toolItem.setShortcut(shortcut);
+    this.webSocket.send("_addShortcut", {
+      shortcut: shortcut,
+      event: shortcutEvent
+    });
+    var callback: Function = this.toolItem.getEventHandler();
+    this.webSocket.on(shortcutEvent, () => { callback(this.webSocket) });
+    return this;
+  }
+  /**
    * Adds an specific icon on the new toolItem. The available icons to this toolbar belong to the fontawesome library. Here, in Fontawesome Icons website, we can choose the desired icon just adding the icon name as method's parameter.
-   * @param {string} icon 
+   * @param {string} icon
    * @returns {ToolItemBuilder}
    */
   public addIcon(icon: string): ToolItemBuilder {
@@ -169,7 +190,7 @@ export class ToolItemBuilder {
   }
   /**
    * Defines a toolitem's description.
-   * @param {string} tooltip 
+   * @param {string} tooltip
    * @returns {ToolItemBuilder}
    */
   public addTooltip(tooltip: string): ToolItemBuilder {
@@ -220,6 +241,7 @@ export class EquoToolItem {
   private tooltip: string;
   private icon: string;
   private eventHandler!: Function;
+  private shortcut!: string;
 
   constructor() {
     this.icon = "";
@@ -248,6 +270,14 @@ export class EquoToolItem {
 
   public getEventHandler(): Function {
     return this.eventHandler;
+  }
+
+  public setShortcut(shortcut: string): void {
+    this.shortcut = shortcut;
+  }
+
+  public getShortcut(): string {
+    return this.shortcut;
   }
 
 }

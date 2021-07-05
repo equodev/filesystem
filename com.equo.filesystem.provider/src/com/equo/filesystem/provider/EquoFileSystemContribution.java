@@ -26,6 +26,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import com.equo.comm.api.IEquoEventHandler;
 import com.equo.contribution.api.EquoContributionBuilder;
 import com.equo.contribution.api.resolvers.EquoGenericUrlResolver;
 import com.equo.filesystem.api.IEquoFileSystem;
@@ -40,7 +41,6 @@ import com.equo.filesystem.provider.handlers.ReadFileHandler;
 import com.equo.filesystem.provider.handlers.RenameFileHandler;
 import com.equo.filesystem.provider.handlers.SaveFileAsHandler;
 import com.equo.filesystem.provider.handlers.SaveFileHandler;
-import com.equo.ws.api.IEquoEventHandler;
 
 /**
  * Contribution that provides the filesystem javascript API.

@@ -22,7 +22,7 @@
 
 //require ('./../../equo-toolbar-wc/dist/equotoolbarwc.min.js');
 import '@equo/equo-toolbar-wc';
-import { EquoWebSocketService, EquoWebSocket } from '@equo/websocket'
+import { EquoCommService, EquoComm } from '@equo/comm'
 
 export class Linker {
 
@@ -131,7 +131,7 @@ export class ToolItemBuilder {
   private linker: Linker;
   private toolItem: EquoToolItem
   private toolbar: EquoToolbar
-  private webSocket= EquoWebSocketService.get();
+  private comm = EquoCommService.get();
   /**
    * 
    * @class
@@ -152,14 +152,14 @@ export class ToolItemBuilder {
   }
   /**
    * @callback eventHandlerCallback
-   * @param {EquoWebSocket} [ws] - Optional. EquoWebSocket instance.
+   * @param {EquoComm} [comm] - Optional. EquoComm instance.
    */
   /**
    * Adds the functionality when the item is clicked.
    * @param {eventHandlerCallback} eventHandler
    * @returns {ToolItemBuilder}
    */
-  public onClick(eventHandler: (ws?: EquoWebSocket) => void): ToolItemBuilder {
+  public onClick(eventHandler: (comm?: EquoComm) => void): ToolItemBuilder {
     this.toolItem.setEventHandler(eventHandler);
     return this;
   }
@@ -171,12 +171,12 @@ export class ToolItemBuilder {
   public setShortcut(shortcut: string): ToolItemBuilder {
     var shortcutEvent = "_toolbarShortcut".concat(shortcut);
     this.toolItem.setShortcut(shortcut);
-    this.webSocket.send("_addShortcut", {
+    this.comm.send("_addShortcut", {
       shortcut: shortcut,
       event: shortcutEvent
     });
     var callback: Function = this.toolItem.getEventHandler();
-    this.webSocket.on(shortcutEvent, () => { callback(this.webSocket) });
+    this.comm.on(shortcutEvent, () => { callback(this.comm) });
     return this;
   }
   /**

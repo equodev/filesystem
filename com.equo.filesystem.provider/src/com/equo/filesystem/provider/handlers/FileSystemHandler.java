@@ -24,9 +24,9 @@ package com.equo.filesystem.provider.handlers;
 
 import org.eclipse.swt.widgets.Display;
 
+import com.equo.comm.api.IEquoEventHandler;
 import com.equo.filesystem.api.IEquoFileSystem;
 import com.equo.filesystem.provider.util.ICommandConstants;
-import com.equo.ws.api.IEquoEventHandler;
 import com.google.gson.JsonObject;
 
 /**
@@ -38,7 +38,7 @@ public abstract class FileSystemHandler {
 
   /**
    * Executes the action corresponding to the command.
-   * @param  payload ws event payload
+   * @param  payload comm event payload
    * @return         the output of the command execution.
    */
   protected abstract Object execute(JsonObject payload);

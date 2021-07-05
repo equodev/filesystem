@@ -25,7 +25,7 @@ window.equo = window.equo || {};
 function sendFileSystemCommand(callback, commandId, filePath = null, content = null) {
     let responseId = (Math.random() + 1).toString(36).substring(7);
     equo.on(responseId, callback);
-    equo.sendToWebSocketServer(commandId, {
+    equo.sendToCommServer(commandId, {
         commandId: commandId + ".command",
         responseId: responseId,
         filePath: filePath,

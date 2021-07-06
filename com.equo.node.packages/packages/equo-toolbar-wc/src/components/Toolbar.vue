@@ -3,39 +3,61 @@
         <v-toolbar height="35px" :color="color">
           <slot></slot>
           <v-spacer></v-spacer>
-          <v-btn dark icon text>
-          <font-awesome-icon :icon="['fas','times']" />
-        </v-btn>
+          <v-tooltip bottom v-if="crossenable === 'true'">
+            <template v-slot:activator="{ on: tooltip }">
+              <v-btn
+                dark
+                icon
+                text
+                v-on:click="eventhandlerEval"
+                v-on="{...tooltip}"
+              >
+              <equo-toolicon :icon="icon"/>
+              </v-btn>
+            </template>
+            <span>{{crosstooltip}}</span>
+          </v-tooltip>
         </v-toolbar>
     </div>
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-import {VToolbar, VBtn, VSpacer} from 'vuetify/lib'
-
-library.add(
-  fas
-)
+import {VToolbar, VBtn, VSpacer, VTooltip} from 'vuetify/lib';
+import EquoToolicon from '../components/Toolicon.vue';
 
 export default {
   name: 'equo-toolbar',
-  components: { FontAwesomeIcon, VToolbar, VBtn, VSpacer},
+  components: { VToolbar, VBtn, VSpacer, VTooltip, EquoToolicon},
   props: {
     color: {
       type: String,
       default: "#07F"
+    },
+    eventhandler: {
+      type: String,
+      default: (() => {}).toString()
+    },
+    crossenable: {
+      type: String,
+      default: "true"
+    },
+    crosstooltip: {
+      type: String,
+      default: "Tooltip"
+    },
+    icon: {
+      type: String,
+      default: ""
     }
   },
-  data: () => ({
-     
-  }),
-    methods: {
+  methods: {
+    eventhandlerEval(){
+      var f = new Function("return " + this.eventhandler.toString())();
+      f();
     }
-
   }
+}
+
 </script>
 <style>
 .toolbar-container{

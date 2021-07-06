@@ -77,6 +77,53 @@ export class ToolbarBuilder {
     return this;
   }
   /**
+   * Sets value "true" for enable cross  button or "false" for disabled. Default is disabled.
+   * @param {string} value 
+   * @returns {ToolbarBuilder}
+   */
+  public crossEnable(value: boolean): ToolbarBuilder {
+    this.toolbar.setAttribute('crossenable', String(value));
+    return this;
+  }
+  /**
+   * Sets icon for cross button.
+   * @param icon 
+   * @returns {ToolbarBuilder}
+   */
+  public setCrossIcon(icon: string): ToolbarBuilder {
+    this.toolbar.setAttribute('icon', icon);
+    return this;
+  }
+  /**
+   * Sets text for cross button tooltip.
+   * @param {string} value
+   * @returns {ToolbarBuilder}
+   */
+  public setCrossTooltip(value: string): ToolbarBuilder {
+    this.toolbar.setAttribute('crosstooltip', value);
+    return this;
+  }
+  /**
+   * Gets if cross button is enabled.
+   * @returns {string | null}
+   */
+  public getCrossEnable(): string | null {
+    return this.toolbar.getAttribute('crossenable');
+  }
+  /**
+   * @callback eventHandlerCallback
+   * @param {EquoWebSocket} [ws] - Optional. EquoWebSocket instance.
+   */
+  /**
+   * Adds the functionality when the cross button is clicked.
+   * @param {eventHandlerCallback} eventHandler
+   * @returns {ToolbarBuilder}
+   */
+  public setCloseFunction(eventHandler: (ws?: EquoWebSocket) => void): ToolbarBuilder {
+    this.toolbar.setAttribute('eventhandler', eventHandler.toString());
+    return this;
+  }
+  /**
    * Adds a new item to the toolbar.
    * @returns {ToolItemBuilder}
    */
@@ -180,11 +227,11 @@ export class ToolItemBuilder {
     return this;
   }
   /**
-   * Adds an specific icon on the new toolItem. The available icons to this toolbar belong to the fontawesome library. Here, in Fontawesome Icons website, we can choose the desired icon just adding the icon name as method's parameter.
+   * Sets an specific icon on the new toolItem. Use from assets folder or link.
    * @param {string} icon
    * @returns {ToolItemBuilder}
    */
-  public addIcon(icon: string): ToolItemBuilder {
+  public setIcon(icon: string): ToolItemBuilder {
     this.toolItem.setIcon(icon);
     return this;
   }

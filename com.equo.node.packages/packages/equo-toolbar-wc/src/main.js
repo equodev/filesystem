@@ -24,10 +24,13 @@ import Vue from 'vue'
 
 import wrap from '@vue/web-component-wrapper';
 import EquoToolitem from './components/Toolitem';
-import EquoToolbar from './components/Toolbar'
+import EquoToolbar from './components/Toolbar';
+import EquoToolicon from './components/Toolicon';
 
 const WrappedElement = wrap(Vue, EquoToolitem);
 const WrappedElement2 = wrap(Vue,EquoToolbar);
+const WrappedElement3 = wrap(Vue,EquoToolicon);
 
 window.customElements.define('equo-toolitem', WrappedElement);
 window.customElements.define('equo-toolbar',WrappedElement2);
+window.customElements.define('equo-toolicon',WrappedElement3);

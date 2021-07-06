@@ -1,6 +1,6 @@
 {
     "name": "@equo/toolbar-api",
-    "version": "0.1.4",
+    "version": "0.1.6",
     "description": "Toolbar Component Api for Equo apps",
     "license": "UNLICENSED",
     "publishConfig": {

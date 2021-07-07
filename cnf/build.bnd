@@ -9,11 +9,11 @@ Bundle-ActivationPolicy: lazy
         poll.time = -1; \
         cache = ~/.bnd/cache/equo
 
--plugin.2.Release: \
-    aQute.bnd.repository.p2.provider.P2Repository; \
-        name = "Release"; \
-        url = "https://dl.dev.equoplatform.com/framework-extras/${previous_version}/repo/"; \
-        poll.time = -1
+#-plugin.2.Release: \
+#    aQute.bnd.repository.p2.provider.P2Repository; \
+#        name = "Release"; \
+#        url = "https://dl.dev.equoplatform.com/framework-extras/${previous_version}/repo/"; \
+#        poll.time = -1
 
--baseline: *
--baselinerepo: Release
+#-baseline: *
+#-baselinerepo: Release

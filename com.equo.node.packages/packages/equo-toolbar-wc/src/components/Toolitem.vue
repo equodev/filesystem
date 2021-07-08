@@ -1,50 +1,60 @@
-
 <template>
-  <v-tooltip data-app bottom>
-    <template v-slot:activator="{ on }">
-      <v-btn v-on:click="eventhandlerEval" icon text dark v-on="on">
+  <b-navbar-nav v-if="visible === 'true'">
+    <b-nav-item>
+      <button type="button" class="btnb btn" data-toggle="tooltip" data-placement="bottom" :title="tooltip" @click="eventhandler">
         <equo-toolicon :icon="icon"/>
-      </v-btn>
-    </template>
-    <span>{{tooltip}}</span>
-  </v-tooltip>
+      </button>
+    </b-nav-item>
+  </b-navbar-nav>
 </template>
 
-
 <script>
-import { VBtn, VTooltip } from 'vuetify/lib';
 import EquoToolicon from '../components/Toolicon.vue';
+import { EquoCommService } from '@equo/comm';
 
   export default {
     name: "equo-toolitem",
-    components: { VBtn, VTooltip, EquoToolicon },
-    props:{
-      eventhandler:{
-        type: String,
-        default: (()=>{console.warn("On click event Listener by default, please define an EventHandler for each Equo ToolItem");}).toString(),
+    components: {EquoToolicon},
+    props: {
+      commevent: {
+        type: String
       },
-      tooltip:{
+      tooltip: {
         type: String,
         default: "Tooltip"
       },
-      icon:{
+      icon: {
         type: String,
         default: ""
+      },
+      visible: {
+        type: String,
+        default: "false"
       }
     },
     methods: {
-      eventhandlerEval(){
-        var f = new Function("return " + this.eventhandler.toString())();
-        f();
+      eventhandler(){
+        if (this.commevent) {
+          EquoCommService.get().send(this.commevent);
+        }
       }
     }
   }
 </script>
+
 <style>
-.v-tooltip{
-  display: block;
+
+.btnb {
+  height: 30px;
+  border-color: transparent;
+  background-color:transparent;
+  display: flex;
 }
 
-@import url("./../styles/vuetify.css");
-@import url("./../styles/styles.css");
+.btnb:hover {
+  background-color:rgba(255,255,255,0.3);
+}
+
+@import url("./../styles/bootstrap-vue.css");
+@import url("./../styles/bootstrap.css");
 </style>

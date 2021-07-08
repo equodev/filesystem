@@ -1,7 +1,11 @@
 <template>
-    <span class="v-btn__content"><img :src="getImg" class="tool-icon"/></span>
+    <img :src="getImg" class="tool-icon"/>
 </template>
 <script>
+
+import iconFolder from '../assets/folder.png';
+import iconSearch from '../assets/search.png';
+import iconTimes from '../assets/times.svg';
 
 export default {
     name: "equo-toolicon",
@@ -13,12 +17,15 @@ export default {
     },
     computed: {
         getImg() {
-            if (this.icon.startsWith("http://") || this.icon.startsWith("https://")) {
-                return this.icon;
-            } else if (this.icon === "") {
-                return "";
+            if (this.icon.startsWith("./assets/")) {
+                if (this.icon.endsWith("folder.png")) {
+                    return iconFolder
+                } else if (this.icon.endsWith("times.svg")) {
+                    return iconTimes;
+                }
+                return iconSearch;
             }
-            return '/img/' + this.icon;
+            return this.icon;
         }
     }
 }

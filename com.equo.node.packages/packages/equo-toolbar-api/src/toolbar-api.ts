@@ -58,6 +58,9 @@ export class ToolbarBuilder {
   private linker: Linker;
   private equoToolbar: EquoToolbar;
   private toolbar: HTMLElement= document.createElement('equotoolbarwc-toolbar');
+  private crossToolItem = document.createElement('equotoolbarwc-toolitem');
+  private id: string;
+  private comm: EquoComm; 
 
   /**
    * @name ToolbarBuilder
@@ -66,6 +69,9 @@ export class ToolbarBuilder {
   constructor(linker: Linker) {
     this.linker = linker;
     this.equoToolbar = new EquoToolbar();
+    this.id = Math.random().toString(36).substr(2, 9).trim();
+    this.comm = EquoCommService.get();
+    this.crossToolItem.style.marginLeft = "auto"
   }
   /**
    * Changes the toolbar's background color using rgb or hexacode.
@@ -77,50 +83,63 @@ export class ToolbarBuilder {
     return this;
   }
   /**
-   * Sets value "true" for enable cross  button or "false" for disabled. Default is disabled.
+   * Sets value "true" for enable close  button or "false" for disabled. Default is disabled.
    * @param {string} value 
    * @returns {ToolbarBuilder}
    */
-  public crossEnable(value: boolean): ToolbarBuilder {
-    this.toolbar.setAttribute('crossenable', String(value));
+  public closeEnable(value: boolean): ToolbarBuilder {
+    this.crossToolItem.setAttribute('visible', String(value));
     return this;
   }
   /**
-   * Sets icon for cross button.
+   * Sets icon for close button.
    * @param icon 
    * @returns {ToolbarBuilder}
    */
-  public setCrossIcon(icon: string): ToolbarBuilder {
-    this.toolbar.setAttribute('icon', icon);
+  public setCloseIcon(icon: string): ToolbarBuilder {
+    this.crossToolItem.setAttribute('icon', icon);
     return this;
   }
   /**
-   * Sets text for cross button tooltip.
+   * Sets text for close button tooltip.
    * @param {string} value
    * @returns {ToolbarBuilder}
    */
-  public setCrossTooltip(value: string): ToolbarBuilder {
-    this.toolbar.setAttribute('crosstooltip', value);
+  public setCloseTooltip(value: string): ToolbarBuilder {
+    this.crossToolItem.setAttribute('tooltip', value);
     return this;
   }
   /**
-   * Gets if cross button is enabled.
+   * Gets whether close button is enabled or not.
    * @returns {string | null}
    */
   public getCrossEnable(): string | null {
-    return this.toolbar.getAttribute('crossenable');
+    return this.crossToolItem.getAttribute('visible');
   }
   /**
    * @callback eventHandlerCallback
-   * @param {EquoWebSocket} [ws] - Optional. EquoWebSocket instance.
+   * @param {EquoComm} [comm] - Optional. EquoComm instance.
    */
   /**
-   * Adds the functionality when the cross button is clicked.
+   * Adds the functionality when the close button is clicked.
    * @param {eventHandlerCallback} eventHandler
    * @returns {ToolbarBuilder}
    */
-  public setCloseFunction(eventHandler: (ws?: EquoWebSocket) => void): ToolbarBuilder {
-    this.toolbar.setAttribute('eventhandler', eventHandler.toString());
+  public setCloseFunction(eventHandler: (comm?: EquoComm) => void): ToolbarBuilder {
+    this.comm.on(this.id, () => { eventHandler(this.comm) });
+    this.crossToolItem.setAttribute('commevent', this.id);
+    return this;
+  }
+  /**
+   * Sets the shortcut for close button.
+   * @param {string} shortcut
+   * @returns {ToolItemBuilder}
+   */
+  public setCloseShortcut(shortcut: String): ToolbarBuilder {
+    this.comm.send("_addShortcut", {
+      shortcut: shortcut,
+      event: this.id
+    });
     return this;
   }
   /**
@@ -137,7 +156,7 @@ export class ToolbarBuilder {
   public build(): void {
     let toolbarColor = this.equoToolbar.getColour();
     if (typeof toolbarColor !== undefined) {
-      this.toolbar.setAttribute('color', toolbarColor);
+      this.toolbar.setAttribute('toolbar-color', toolbarColor);
     }
 
     var toolitems: Array<EquoToolItem> = this.equoToolbar.getToolItems();
@@ -145,6 +164,8 @@ export class ToolbarBuilder {
     for (let i = 0; i < toolitems.length; i++) {
       this.defineToolItem(toolitems, i, this.toolbar);
     }
+
+    this.toolbar.appendChild(this.crossToolItem);
 
     document.body.insertBefore(this.toolbar,document.body.firstChild);
   }
@@ -164,10 +185,12 @@ export class ToolbarBuilder {
     if (tooltip !== "") {
       toolitem.setAttribute("tooltip", tooltip);
     }
-    var eventHandlerToolItem: Function = toolitems[index].getEventHandler();
-    if (eventHandlerToolItem) {
-      toolitem.setAttribute("eventhandler", eventHandlerToolItem.toString());
+    var action = toolitems[index].getAction();
+    if (action) {
+      toolitem.setAttribute("commevent", action);
     }
+
+    toolitem.setAttribute("visible", "true");
 
     toolbar.appendChild(toolitem);
   }
@@ -208,6 +231,7 @@ export class ToolItemBuilder {
    */
   public onClick(eventHandler: (comm?: EquoComm) => void): ToolItemBuilder {
     this.toolItem.setEventHandler(eventHandler);
+    this.comm.on(this.toolItem.getAction(), () => { eventHandler(this.comm) });
     return this;
   }
   /**
@@ -216,14 +240,11 @@ export class ToolItemBuilder {
    * @returns {ToolItemBuilder}
    */
   public setShortcut(shortcut: string): ToolItemBuilder {
-    var shortcutEvent = "_toolbarShortcut".concat(shortcut);
     this.toolItem.setShortcut(shortcut);
     this.comm.send("_addShortcut", {
       shortcut: shortcut,
-      event: shortcutEvent
+      event: this.toolItem.getAction()
     });
-    var callback: Function = this.toolItem.getEventHandler();
-    this.comm.on(shortcutEvent, () => { callback(this.comm) });
     return this;
   }
   /**
@@ -289,10 +310,12 @@ export class EquoToolItem {
   private icon: string;
   private eventHandler!: Function;
   private shortcut!: string;
+  private id: string;
 
   constructor() {
     this.icon = "";
     this.tooltip = "";
+    this.id = Math.random().toString(36).substr(2, 9).trim();
   }
 
   public setTooltip(tooltip: string): void {
@@ -327,6 +350,9 @@ export class EquoToolItem {
     return this.shortcut;
   }
 
+  public getAction(): string {
+    return this.id;
+  }
 }
 /**
  * @namespace

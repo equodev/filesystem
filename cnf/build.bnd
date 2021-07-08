@@ -1,19 +1,19 @@
 Bundle-ActivationPolicy: lazy
 
--include: https://dl.equoplatform.com/framework/1.0.0/framework.bnd
+-include: https://dl.dev.equoplatform.com/framework/develop/framework.bnd
 
 -plugin.1.Equo: \
     aQute.bnd.repository.osgi.OSGiRepository; \
         name = Equo; \
-        locations = "https://dl.equoplatform.com/framework/${framework_version}/repo/index.xml.gz"; \
+        locations = "https://dl.dev.equoplatform.com/framework/${framework_version}/repo/index.xml.gz"; \
         poll.time = -1; \
         cache = ~/.bnd/cache/equo
 
--plugin.2.Release: \
-    aQute.bnd.repository.p2.provider.P2Repository; \
-        name = "Release"; \
-        url = "https://dl.equoplatform.com/framework-extras/${previous_version}/repo/"; \
-        poll.time = -1
+#-plugin.2.Release: \
+#    aQute.bnd.repository.p2.provider.P2Repository; \
+#        name = "Release"; \
+#        url = "https://dl.dev.equoplatform.com/framework-extras/${previous_version}/repo/"; \
+#        poll.time = -1
 
--baseline: *
--baselinerepo: Release
+#-baseline: *
+#-baselinerepo: Release

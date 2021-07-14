@@ -33,109 +33,142 @@ function sendFileSystemCommand(callback, commandId, filePath = null, content = n
     });
 };
 
+/**
+ * @namespace
+ * @description Equo-FileSystem is a link:./../../developing/equo-contributions.html[Equo Contribution] that allows the basic handling of files from Javascript.
+ */
+ export var equo;
 (function (equo) {
 
     /**
-     * @Function "equo.saveFile"
-     * @param filePath path of the file to be saved
-     * @param content content to save
-     * @param callback function to be called once the operation has completed
+     * Saves content into the given file.
+     * @function
+     * @name equo.saveFile
+     * @param {string} filePath path of the file to be saved
+     * @param {string} content content to save
+     * @param {Function} callback function to be called once the operation is completed
+     * @returns {void}
      */
-    equo.saveFile = function (filePath, content, callback) {
+     equo.saveFile = function (filePath, content, callback) {
         sendFileSystemCommand(callback, "_SaveFile", filePath, content);
     };
 
     /**
-     * @Function "equo.saveFileAs"
-     * @description prompts a dialog to select where to save the file
-     * @param content content to save
-     * @param callback function to be called once the operation has completed
+     * Prompts a dialog to select where to save the file
+     * @function
+     * @name equo.saveFileAs
+     * @param {string} content content to save
+     * @param {Function} callback function to be called once the operation is completed
+     * @returns {void}
      */
     equo.saveFileAs = function (content, callback) {
         sendFileSystemCommand(callback, "_SaveFileAs", null, content);
     };
 
     /**
-     * @Function "equo.newFolder"
-     * @param path path of the folder to be created
-     * @param callback function to be called once the operation has completed
+     * Creates a new folder.
+     * @function
+     * @name equo.newFolder
+     * @param {string} path path of the folder to be created
+     * @param {Function} callback function to be called once the operation is completed
+     * @returns {void}
      */
     equo.newFolder = function (path, callback) {
         sendFileSystemCommand(callback, "_NewFolder", path);
     };
 
     /**
-     * @Function "equo.renameFile"
-     * @param filePath path to actual file
-     * @param newName new file name
-     * @param callback function to be called once the operation has completed
+     * Renames the file.
+     * @function
+     * @name equo.renameFile
+     * @param {string} filePath path to actual file
+     * @param {string} newName new file name
+     * @param {Function} callback function to be called once the operation is completed
+     * @returns {void}
      */
     equo.renameFile = function (filePath, newName, callback) {
         sendFileSystemCommand(callback, "_RenameFile", filePath, newName);
     };
 
     /**
-     * @Function "equo.moveFile"
-     * @param filePath path to actual file
-     * @param directoryDest folder to move it to
-     * @param callback function to be called once the operation has completed
+     * Moves the file into a new destination.
+     * @function
+     * @name equo.moveFile
+     * @param {string} filePath path to actual file
+     * @param {string} directoryDest folder to move it to
+     * @param {Function} callback function to be called once the operation is completed
+     * @returns {void}
      */
     equo.moveFile = function (filePath, directoryDest, callback) {
         sendFileSystemCommand(callback, "_MoveFile", filePath, directoryDest);
     };
 
     /**
-     * @Function "equo.copyFile"
-     * @param filePath path to actual file
-     * @param directoryDest folder to copy it to
-     * @param callback function to be called once the operation has completed
+     * Copies the file into a new destination.
+     * @function
+     * @name equo.copyFile
+     * @param {string} filePath path to actual file
+     * @param {string} directoryDest folder to copy it to
+     * @param {Function} callback function to be called once the operation is completed
+     * @returns {void}
      */
     equo.copyFile = function (filePath, directoryDest, callback) {
         sendFileSystemCommand(callback, "_CopyFile", filePath, directoryDest);
     };
 
     /**
-     * @Function "equo.openFile"
-     * @description prompts a dialog to open a file
-     * @param callback function to be called with the path of the chosen file passed as parameter
+     * Prompts a dialog to open a file.
+     * @function
+     * @name equo.openFile
+     * @param {Function} callback function to be called with the path of the chosen file passed as parameter
+     * @returns {void}
      */
     equo.openFile = function (callback) {
         sendFileSystemCommand(callback, "_OpenFile");
     };
 
     /**
-     * @Function "equo.readFile"
-     * @param filePath path to file to be readed
-     * @param callback function to be called with the file content passed as parameter
+     * Reads the file content.
+     * @function 
+     * @name equo.readFile
+     * @param {string} filePath path to file to be readed
+     * @param {Function} callback function to be called with the file content passed as parameter
+     * @returns {void}
      */
     equo.readFile = function (filePath, callback) {
         sendFileSystemCommand(callback, "_ReadFile", filePath);
     };
 
     /**
-     * @Function "equo.deleteFile"
-     * 
-     * @param filePath path to file to be deleted
-     * @param callback function to be called once the operation has completed
+     * Deletes the file.
+     * @function
+     * @name equo.deleteFile
+     * @param {string} filePath path to file to be deleted
+     * @param {Function} callback function to be called once the operation is completed
+     * @returns {void}
      */
     equo.deleteFile = function (filePath, callback) {
         sendFileSystemCommand(callback, "_DeleteFile", filePath);
     };
 
     /**
-     * @Function "equo.fileInfo"
-     * @description gets info about a file or folder, such as what children it has, read and write permissions, etc.
-     * @param filePath path to the file from which information is to be retrieved
-     * @param callback function to be called with the file info passed as parameter
+     * Gets info about a file or folder, such as what children it has, read and write permissions, etc.
+     * @function
+     * @name equo.fileInfo
+     * @param {string} filePath path to the file from which information is to be retrieved
+     * @param {Function} callback function to be called with the file info passed as parameter
+     * @returns {void}
      */
     equo.fileInfo = function (filePath, callback) {
         sendFileSystemCommand(callback, "_FileInfo", filePath);
     };
 
     /**
-     * @Function "equo.openFolder"
-     * @description prompts a dialog to open a folder
-     * @param callback function to be called with the path of the chosen folder passed as parameter
+     * Prompts a dialog to open a folder
+     * @function
+     * @name equo.openFolder
+     * @param {Function} callback function to be called with the path of the chosen folder passed as parameter
+     * @returns {void}
      */
     equo.openFolder = function (callback) {
         sendFileSystemCommand(callback, "_OpenFolder");

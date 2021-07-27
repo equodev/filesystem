@@ -26,7 +26,7 @@ import wrap from '@vue/web-component-wrapper';
 import EquoToolitem from './components/Toolitem';
 import EquoToolbar from './components/Toolbar';
 import EquoToolicon from './components/Toolicon';
-import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
+import BootstrapVue from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 
 const WrappedElement = wrap(Vue, EquoToolitem);

@@ -1,6 +1,6 @@
 {
     "name": "@equo/toolbar-api",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "Toolbar Component Api for Equo apps",
     "license": "UNLICENSED",
     "publishConfig": {
@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "@equo/comm": "^0.1.7",
-        "@equo/equo-toolbar-wc": "0.1.1"
+        "@equo/equo-toolbar-wc": "0.1.2"
     },
     "devDependencies": {
         "jsdoc-to-markdown": "^6.0.0"

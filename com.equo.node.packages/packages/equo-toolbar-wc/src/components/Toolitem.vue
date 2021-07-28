@@ -36,28 +36,38 @@ import { EquoCommService } from '@equo/comm';
         default: "false"
       }
     },
-    methods: {
-      eventhandler(){
-        if (this.commevent) {
-          EquoCommService.get().send(this.commevent);
-        }
-      }
-    },
     data() {
       return {
         tooltipVisible: false,
         tooltipStyle: ""
       }
     },
-    updated() {
-      if (this.$refs.button != undefined && this.$refs.tooltip != undefined) {
-        let buttonRef = this.$refs.button.getBoundingClientRect();
-        let tooltipRef = this.$refs.tooltip.getBoundingClientRect();
-        let left = (buttonRef.left + buttonRef.width/2 - tooltipRef.width/2 );
-        let minLeft = left < 0 ? 5 : ((left + tooltipRef.width) >= window.screen.width ? window.screen.width - tooltipRef.width - 5 : left);
-        this.tooltipStyle = "position: absolute; transform: translate(0px," + buttonRef.bottom + "px); top: 0px; left:" + minLeft +"px;"
+    methods: {
+      eventhandler() {
+        if (this.commevent) {
+          EquoCommService.get().send(this.commevent);
+        }
+      },
+      updateTooltip() {
+        if (this.$refs.button != undefined && this.$refs.tooltip != undefined) {
+          let buttonRef = this.$refs.button.getBoundingClientRect();
+          let tooltipRef = this.$refs.tooltip.getBoundingClientRect();
+          this.bottom = buttonRef.bottom;
+          let left = (buttonRef.left + buttonRef.width/2 - tooltipRef.width/2 );
+          let minLeft = left < 0 ? 5 : ((left + tooltipRef.width) >= document.documentElement.clientWidth ? document.documentElement.clientWidth - tooltipRef.width - 7 : left);
+          this.tooltipStyle = "position: absolute; transform: translate(0px," + this.bottom + "px); top: 0px; left:" + minLeft +"px;"
+        }
       }
     },
+    mounted: function () {
+      window.addEventListener('resize', this.updateTooltip)
+    },
+    beforeDestroy: function () {
+      window.removeEventListener('resize', this.updateTooltip)
+    },
+    updated() {
+      this.updateTooltip()
+    }
   }
 </script>
 

@@ -6,20 +6,20 @@ Equo Extras contains a set of optional APIs with extra functionalities
 
 To add Extras in an app you must do two things:
 
-* **Add repositories and build settings.** Open `cnf/build.bnd` file in your app project and add `https://dl.equoplatform.com/framework-extras/1.0.0/equobuild.bnd` into the includes. It will look like this:
+* **Add repositories and build settings.** Open `cnf/build.bnd` file in your app project and add `https://dl.equoplatform.com/framework-extras/1.0/equobuild.bnd` into the includes. It will look like this:
 
     ```
-    -include: https://dl.equoplatform.com/framework/1.0.0/equobuild.bnd,\
-                https://dl.equoplatform.com/framework-extras/1.0.0/equobuild.bnd
+    -include: https://dl.equoplatform.com/framework/1.0/equobuild.bnd,\
+                https://dl.equoplatform.com/framework-extras/1.0/equobuild.bnd
     ```
 
-* **Enable Extras in your app.** Open the `bnd.bnd` file of your app and add `https://dl.equoplatform.com/framework-extras/1.0.0/extras.bnd` into the _-include_ sentence.
+* **Enable Extras in your app.** Open the `bnd.bnd` file of your app and add `https://dl.equoplatform.com/framework-extras/1.0/extras.bnd` into the _-include_ sentence.
 
     The file will look like this:
 
     ```
-    -include: https://dl.equoplatform.com/framework/1.0.0/equoapp.bnd,\
-	          https://dl.equoplatform.com/framework-extras/1.0.0/extras.bnd
+    -include: https://dl.equoplatform.com/framework/1.0/equoapp.bnd,\
+	          https://dl.equoplatform.com/framework-extras/1.0/extras.bnd
     ```
 
 ## How to develop
@@ -37,7 +37,3 @@ The bundles that provide the extras functionality of the framework:
 | com.equo.filesystem.api| API to manage the filesystem to Create/Open/Read/Write/Copy/Rename/Move/Delete folders or files |
 | com.equo.filesystem.provider | The implementation of the filesystem API. Has the logic of filesystem managment and contributes a js API to make filesystem calls from javascript | 
 | com.make.node.packages | Contains extra Node packages components. It currently has packages for a web toolbar creation | 
-
-### Release bundle
-
-As every other Framework project, there is the `com.equo.p2repo`, which is responsible of the p2 repository generation of the project and dependencies for its release.

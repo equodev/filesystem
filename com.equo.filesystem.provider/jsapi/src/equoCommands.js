@@ -37,7 +37,7 @@ function sendFileSystemCommand(callback, commandId, filePath = null, content = n
  * @namespace
  * @description Equo-FileSystem is a link:./../../developing/equo-contributions.html[Equo Contribution] that allows the basic handling of files from Javascript.
  */
- export var equo;
+ var equo;
 (function (equo) {
 
     /**

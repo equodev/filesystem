@@ -58,7 +58,6 @@ export class ToolbarBuilder {
   private linker: Linker;
   private equoToolbar: EquoToolbar;
   private toolbar: HTMLElement= document.createElement('equotoolbarwc-toolbar');
-  private crossToolItem = document.createElement('equotoolbarwc-toolitem');
   private id: string;
   private comm: EquoComm; 
 
@@ -71,7 +70,6 @@ export class ToolbarBuilder {
     this.equoToolbar = new EquoToolbar();
     this.id = Math.random().toString(36).substr(2, 9).trim();
     this.comm = EquoCommService.get();
-    this.crossToolItem.style.marginLeft = "auto"
   }
   /**
    * Changes the toolbar's background color using rgb or hexacode.
@@ -88,7 +86,7 @@ export class ToolbarBuilder {
    * @returns {ToolbarBuilder}
    */
   public closeEnable(value: boolean): ToolbarBuilder {
-    this.crossToolItem.setAttribute('visible', String(value));
+    this.toolbar.setAttribute('close-visible', String(value));
     return this;
   }
   /**
@@ -97,7 +95,7 @@ export class ToolbarBuilder {
    * @returns {ToolbarBuilder}
    */
   public setCloseIcon(icon: string): ToolbarBuilder {
-    this.crossToolItem.setAttribute('icon', icon);
+    this.toolbar.setAttribute('close-icon', icon);
     return this;
   }
   /**
@@ -106,7 +104,7 @@ export class ToolbarBuilder {
    * @returns {ToolbarBuilder}
    */
   public setCloseTooltip(value: string): ToolbarBuilder {
-    this.crossToolItem.setAttribute('tooltip', value);
+    this.toolbar.setAttribute('close-tooltip', value);
     return this;
   }
   /**
@@ -114,7 +112,7 @@ export class ToolbarBuilder {
    * @returns {string | null}
    */
   public getCrossEnable(): string | null {
-    return this.crossToolItem.getAttribute('visible');
+    return this.toolbar.getAttribute('close-visible');
   }
   /**
    * @callback eventHandlerCallback
@@ -127,7 +125,7 @@ export class ToolbarBuilder {
    */
   public setCloseFunction(eventHandler: (comm?: EquoComm) => void): ToolbarBuilder {
     this.comm.on(this.id, () => { eventHandler(this.comm) });
-    this.crossToolItem.setAttribute('commevent', this.id);
+    this.toolbar.setAttribute('close-event', this.id);
     return this;
   }
   /**
@@ -164,8 +162,6 @@ export class ToolbarBuilder {
     for (let i = 0; i < toolitems.length; i++) {
       this.defineToolItem(toolitems, i, this.toolbar);
     }
-
-    this.toolbar.appendChild(this.crossToolItem);
 
     document.body.insertBefore(this.toolbar,document.body.firstChild);
   }

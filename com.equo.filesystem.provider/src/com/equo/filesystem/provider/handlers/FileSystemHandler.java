@@ -56,7 +56,7 @@ public abstract class FileSystemHandler {
    */
   public void register(IEquoFileSystem equoFileSystem, IEquoEventHandler eventHandler) {
     this.equoFileSystem = equoFileSystem;
-    eventHandler.on(getCommandName(), (JsonObject payload) -> {
+    eventHandler.on(getCommandName(), JsonObject.class, payload -> {
       Display.getDefault().asyncExec(() -> {
         String idResponse = payload.get(ICommandConstants.PARAM_RESPONSE_ID).getAsString();
         Object response = execute(payload);
